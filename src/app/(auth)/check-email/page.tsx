@@ -53,7 +53,7 @@ function CheckEmailContent() {
               {[
                 "Open the email from The Accountant",
                 "Click the verification link",
-                "You'll be taken straight to account setup",
+                "You'll see a confirmation, then log in to get started",
               ].map((step, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <div className="w-6 h-6 rounded-full bg-teal-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">

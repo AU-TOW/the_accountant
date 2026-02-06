@@ -20,7 +20,7 @@ export default function SignupPage() {
     setLoading(true);
 
     const supabase = createClient();
-    const redirectTo = `${window.location.origin}/auth/callback?next=/onboarding`;
+    const redirectTo = `${window.location.origin}/auth/callback`;
 
     const { error } = await supabase.auth.signUp({
       email,
@@ -71,8 +71,11 @@ export default function SignupPage() {
           className="glass-card shadow-glass-lg p-5 sm:p-7"
         >
           {error && (
-            <div className="mb-4 p-3 sm:p-3.5 bg-red-50/80 backdrop-blur-sm border border-red-200/60 rounded-xl text-sm text-red-700 animate-slide-up">
-              {error}
+            <div className="mb-4 p-3 sm:p-3.5 glass-card bg-red-500/5 border-red-300/30 rounded-xl text-sm text-red-700 animate-slide-up flex items-start gap-2.5">
+              <div className="w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="text-xs font-bold text-red-600">!</span>
+              </div>
+              <span>{error}</span>
             </div>
           )}
 

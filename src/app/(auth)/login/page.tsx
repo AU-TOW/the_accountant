@@ -3,7 +3,7 @@
 import { Suspense, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Calculator, Mail, Lock, Loader2, ArrowRight } from "lucide-react";
+import { Calculator, Mail, Lock, Loader2, ArrowRight, CheckCircle2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 function LoginForm() {
@@ -15,6 +15,7 @@ function LoginForm() {
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect") || "/dashboard";
   const verificationError = searchParams.get("error") === "verification_failed";
+  const verified = searchParams.get("verified") === "true";
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -63,15 +64,28 @@ function LoginForm() {
           onSubmit={handleLogin}
           className="glass-card shadow-glass-lg p-5 sm:p-7"
         >
+          {verified && (
+            <div className="mb-4 p-3 sm:p-3.5 glass-card bg-teal-500/5 border-teal-300/30 rounded-xl text-sm text-teal-700 animate-slide-up flex items-start gap-2.5">
+              <CheckCircle2 className="w-4 h-4 text-teal-500 flex-shrink-0 mt-0.5" />
+              <span>Email verified successfully! Log in to get started.</span>
+            </div>
+          )}
+
           {verificationError && (
-            <div className="mb-4 p-3 sm:p-3.5 bg-amber-50/80 backdrop-blur-sm border border-amber-200/60 rounded-xl text-sm text-amber-700 animate-slide-up">
-              Email verification failed or link expired. Please try signing up again.
+            <div className="mb-4 p-3 sm:p-3.5 glass-card bg-amber-500/5 border-amber-300/30 rounded-xl text-sm text-amber-700 animate-slide-up flex items-start gap-2.5">
+              <div className="w-5 h-5 rounded-full bg-amber-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="text-xs font-bold text-amber-600">!</span>
+              </div>
+              <span>Email verification failed or link expired. Please try signing up again.</span>
             </div>
           )}
 
           {error && (
-            <div className="mb-4 p-3 sm:p-3.5 bg-red-50/80 backdrop-blur-sm border border-red-200/60 rounded-xl text-sm text-red-700 animate-slide-up">
-              {error}
+            <div className="mb-4 p-3 sm:p-3.5 glass-card bg-red-500/5 border-red-300/30 rounded-xl text-sm text-red-700 animate-slide-up flex items-start gap-2.5">
+              <div className="w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="text-xs font-bold text-red-600">!</span>
+              </div>
+              <span>{error}</span>
             </div>
           )}
 

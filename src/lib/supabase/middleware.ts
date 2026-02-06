@@ -56,7 +56,7 @@ export async function updateSession(request: NextRequest) {
   }
 
   // Redirect logged-in users from auth pages to dashboard
-  const authPaths = ["/login", "/signup", "/check-email"];
+  const authPaths = ["/login", "/signup", "/check-email", "/email-verified"];
   const isAuthPage = authPaths.some((path) =>
     request.nextUrl.pathname.startsWith(path)
   );
