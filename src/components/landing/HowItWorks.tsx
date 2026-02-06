@@ -32,18 +32,20 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-16 sm:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-navy-900">
+    <section id="how-it-works" className="py-14 sm:py-20 lg:py-24 relative">
+      <div className="absolute inset-0 bg-gradient-mesh -z-10" />
+
+      <div className="section-container">
+        <div className="text-center mb-10 sm:mb-14">
+          <h2 className="text-h1 text-navy-900">
             How it works
           </h2>
-          <p className="mt-4 text-lg text-navy-600 max-w-2xl mx-auto">
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-navy-500 max-w-2xl mx-auto">
             Four simple steps. No accounting degree required.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8">
           {steps.map((step, i) => (
             <motion.div
               key={step.title}
@@ -51,18 +53,18 @@ export default function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
-              className="text-center"
+              className="glass-card shadow-card hover:shadow-card-hover p-5 sm:p-6 text-center group transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="w-14 h-14 bg-teal-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <step.icon className="w-7 h-7 text-teal-600" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-teal-50 to-teal-100 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-glow transition-shadow duration-300">
+                <step.icon className="w-6 h-6 sm:w-7 sm:h-7 text-teal-600" />
               </div>
-              <div className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-navy-900 text-white text-sm font-bold mb-3">
+              <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-navy-900 text-white text-xs font-bold mb-3">
                 {i + 1}
               </div>
-              <h3 className="text-lg font-semibold text-navy-900 mb-2">
+              <h3 className="text-h4 text-navy-900 mb-2">
                 {step.title}
               </h3>
-              <p className="text-sm text-navy-600 leading-relaxed">
+              <p className="text-sm text-navy-500 leading-relaxed">
                 {step.description}
               </p>
             </motion.div>

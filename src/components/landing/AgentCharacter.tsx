@@ -21,22 +21,23 @@ export default function AgentCharacter() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center gap-6">
+    <div className="flex flex-col items-center gap-5 sm:gap-6">
       {/* AI Character */}
-      <div className="relative">
-        <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center shadow-lg shadow-teal-200">
+      <div className="relative animate-float">
+        <div className="w-28 h-28 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center shadow-glow-lg">
           <div className="text-white text-center">
-            <div className="text-4xl sm:text-5xl mb-1">🧮</div>
-            <div className="text-xs font-medium opacity-90">AI-Powered</div>
+            <div className="text-3xl sm:text-4xl lg:text-5xl mb-0.5">🧮</div>
+            <div className="text-[10px] sm:text-xs font-medium opacity-80">AI-Powered</div>
           </div>
         </div>
-        {/* Pulse ring */}
-        <div className="absolute inset-0 rounded-full border-2 border-teal-400 animate-ping opacity-20" />
+        {/* Pulse rings */}
+        <div className="absolute inset-0 rounded-full border-2 border-teal-400/30 animate-ping" style={{ animationDuration: "3s" }} />
+        <div className="absolute -inset-2 rounded-full border border-teal-400/10 animate-ping" style={{ animationDuration: "4s" }} />
       </div>
 
       {/* Speech bubble */}
-      <div className="relative max-w-md">
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-l border-t border-navy-200 rotate-45" />
+      <div className="relative max-w-xs sm:max-w-sm md:max-w-md">
+        <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-3.5 h-3.5 glass-card rotate-45 border-b-0 border-r-0" />
         <AnimatePresence mode="wait">
           <motion.div
             key={currentBubble}
@@ -44,9 +45,9 @@ export default function AgentCharacter() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.4 }}
-            className="bg-white border border-navy-200 rounded-2xl p-5 shadow-sm"
+            className="glass-card shadow-glass p-4 sm:p-5"
           >
-            <p className="text-navy-800 text-sm sm:text-base leading-relaxed">
+            <p className="text-navy-700 text-sm sm:text-base leading-relaxed">
               &ldquo;{speechBubbles[currentBubble]}&rdquo;
             </p>
           </motion.div>
@@ -57,8 +58,8 @@ export default function AgentCharacter() {
             <button
               key={i}
               onClick={() => setCurrentBubble(i)}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                i === currentBubble ? "bg-teal-500" : "bg-navy-200"
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                i === currentBubble ? "bg-teal-500 w-5" : "bg-navy-200 hover:bg-navy-300"
               }`}
               aria-label={`Show quote ${i + 1}`}
             />

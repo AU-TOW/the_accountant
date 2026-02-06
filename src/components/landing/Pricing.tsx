@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, Sparkles } from "lucide-react";
 
 const plans = [
   {
@@ -53,19 +53,20 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-16 sm:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-navy-900">
+    <section id="pricing" className="py-14 sm:py-20 lg:py-24 relative">
+      <div className="absolute inset-0 bg-gradient-mesh -z-10" />
+
+      <div className="section-container">
+        <div className="text-center mb-10 sm:mb-14">
+          <h2 className="text-h1 text-navy-900">
             Simple, honest pricing
           </h2>
-          <p className="mt-4 text-lg text-navy-600 max-w-2xl mx-auto">
-            Less than the cost of one hour with a traditional accountant. Cancel
-            anytime.
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-navy-500 max-w-2xl mx-auto">
+            Less than the cost of one hour with a traditional accountant. Cancel anytime.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 max-w-5xl mx-auto items-start">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
@@ -73,52 +74,46 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
               viewport={{ once: true }}
-              className={`relative rounded-2xl p-6 ${
+              className={`relative p-5 sm:p-6 transition-all duration-300 ${
                 plan.popular
-                  ? "bg-navy-900 text-white shadow-xl scale-105 border-2 border-teal-500"
-                  : "bg-white border border-navy-200 shadow-sm"
+                  ? "glass-card-dark shadow-glass-xl md:-mt-4 md:mb-[-1rem] border-teal-500/30"
+                  : "glass-card shadow-card hover:shadow-card-hover hover:-translate-y-1"
               }`}
+              style={plan.popular ? { borderColor: "rgba(20, 184, 166, 0.3)" } : undefined}
             >
               {plan.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-teal-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-teal-400 to-teal-500 text-white text-xs font-bold px-3.5 py-1 rounded-full shadow-glow flex items-center gap-1.5">
+                  <Sparkles className="w-3 h-3" />
                   Most Popular
                 </div>
               )}
 
-              <h3
-                className={`text-xl font-bold ${plan.popular ? "text-white" : "text-navy-900"}`}
-              >
+              <h3 className={`text-h3 ${plan.popular ? "text-white" : "text-navy-900"}`}>
                 {plan.name}
               </h3>
 
               <div className="mt-4 flex items-baseline gap-1">
-                <span
-                  className={`text-4xl font-bold ${plan.popular ? "text-white" : "text-navy-900"}`}
-                >
+                <span className={`text-3xl sm:text-4xl font-bold ${plan.popular ? "text-white" : "text-navy-900"}`}>
                   &pound;{plan.price}
                 </span>
-                <span
-                  className={`text-sm ${plan.popular ? "text-navy-300" : "text-navy-500"}`}
-                >
+                <span className={`text-sm ${plan.popular ? "text-navy-300" : "text-navy-400"}`}>
                   /month
                 </span>
               </div>
 
-              <p
-                className={`mt-2 text-sm ${plan.popular ? "text-navy-300" : "text-navy-600"}`}
-              >
+              <p className={`mt-2 text-sm ${plan.popular ? "text-navy-300" : "text-navy-500"}`}>
                 {plan.description}
               </p>
 
-              <ul className="mt-6 space-y-3">
+              <ul className="mt-5 sm:mt-6 space-y-2.5 sm:space-y-3">
                 {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2">
-                    <Check
-                      className={`w-4 h-4 mt-0.5 flex-shrink-0 ${plan.popular ? "text-teal-400" : "text-teal-500"}`}
-                    />
-                    <span
-                      className={`text-sm ${plan.popular ? "text-navy-200" : "text-navy-600"}`}
-                    >
+                  <li key={feature} className="flex items-start gap-2.5">
+                    <div className={`w-4.5 h-4.5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                      plan.popular ? "bg-teal-500/20" : "bg-teal-50"
+                    }`}>
+                      <Check className={`w-3 h-3 ${plan.popular ? "text-teal-400" : "text-teal-600"}`} />
+                    </div>
+                    <span className={`text-sm ${plan.popular ? "text-navy-200" : "text-navy-600"}`}>
                       {feature}
                     </span>
                   </li>
@@ -127,11 +122,7 @@ export default function Pricing() {
 
               <Link
                 href="/signup"
-                className={`mt-8 block text-center px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                  plan.popular
-                    ? "bg-teal-500 hover:bg-teal-400 text-white"
-                    : "bg-navy-900 hover:bg-navy-800 text-white"
-                }`}
+                className={`mt-6 sm:mt-8 w-full ${plan.popular ? "btn-primary" : "btn-secondary"}`}
               >
                 {plan.cta}
               </Link>

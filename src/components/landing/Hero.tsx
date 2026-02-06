@@ -1,52 +1,50 @@
 import Link from "next/link";
-import { ArrowRight, Shield } from "lucide-react";
+import { ArrowRight, Shield, Sparkles } from "lucide-react";
 import AgentCharacter from "./AgentCharacter";
 
 export default function Hero() {
   return (
-    <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-50/50 to-white -z-10" />
+    <section className="relative pt-24 pb-12 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-24 overflow-hidden">
+      {/* Background mesh */}
+      <div className="absolute inset-0 bg-hero-mesh -z-10" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-500/20 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="section-container">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left - copy */}
           <div>
-            <div className="inline-flex items-center gap-2 bg-teal-50 text-teal-700 px-3 py-1.5 rounded-full text-sm font-medium mb-6">
-              <Shield className="w-4 h-4" />
-              AI-Powered &middot; Not a licensed accountant
+            <div className="inline-flex items-center gap-2 glass-card px-3.5 py-1.5 text-sm font-medium text-teal-700 mb-5 sm:mb-6 shadow-sm">
+              <Shield className="w-3.5 h-3.5" />
+              <span>AI-Powered</span>
+              <span className="text-navy-300">&middot;</span>
+              <span className="text-navy-500">Not a licensed accountant</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-navy-900 leading-tight tracking-tight">
+            <h1 className="text-hero text-navy-900 tracking-tight text-balance">
               Your AI accountant that{" "}
-              <span className="text-teal-500">teaches as it works</span>
+              <span className="gradient-text">teaches as it works</span>
             </h1>
 
-            <p className="mt-6 text-lg text-navy-600 leading-relaxed max-w-xl">
+            <p className="mt-4 sm:mt-6 text-base sm:text-lg text-navy-500 leading-relaxed max-w-xl">
               No jargon. No brain fog. Plain English tax advice with real pound
               amounts, not percentages. Built for UK sole traders and limited
-              company directors who want to understand their money.
+              company directors.
             </p>
 
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/signup"
-                className="inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white px-6 py-3.5 rounded-lg text-base font-medium transition-colors"
-              >
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Link href="/signup" className="btn-primary">
                 Start saving tax today
                 <ArrowRight className="w-4 h-4" />
               </Link>
-              <a
-                href="#how-it-works"
-                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-navy-50 text-navy-700 border border-navy-200 px-6 py-3.5 rounded-lg text-base font-medium transition-colors"
-              >
+              <a href="#how-it-works" className="btn-secondary">
                 See how it works
               </a>
             </div>
 
-            <p className="mt-6 text-sm text-navy-400">
-              Free tier available. No credit card required.
-            </p>
+            <div className="mt-5 sm:mt-6 flex items-center gap-2 text-sm text-navy-400">
+              <Sparkles className="w-4 h-4 text-teal-500" />
+              <span>Free tier available. No credit card required.</span>
+            </div>
           </div>
 
           {/* Right - AI character */}

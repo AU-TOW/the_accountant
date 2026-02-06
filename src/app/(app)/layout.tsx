@@ -33,50 +33,50 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="min-h-screen bg-navy-50/30">
+    <div className="min-h-screen bg-mesh">
       {/* Mobile header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b border-navy-100 h-14 flex items-center px-4">
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 glass-card rounded-none border-0 border-b shadow-glass h-14 flex items-center px-4">
         <button
           onClick={() => setSidebarOpen(true)}
-          className="p-2 -ml-2"
+          className="p-2 -ml-2 rounded-xl hover:bg-navy-50 transition-colors"
           aria-label="Open menu"
         >
           <Menu className="w-5 h-5 text-navy-700" />
         </button>
         <Link href="/dashboard" className="flex items-center gap-2 ml-2">
-          <div className="w-7 h-7 bg-teal-500 rounded-md flex items-center justify-center">
-            <Calculator className="w-4 h-4 text-white" />
+          <div className="w-7 h-7 bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg flex items-center justify-center">
+            <Calculator className="w-3.5 h-3.5 text-white" />
           </div>
-          <span className="font-bold text-navy-900">The Accountant</span>
+          <span className="font-bold text-navy-900 text-sm">The Accountant</span>
         </Link>
       </div>
 
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div
-          className="lg:hidden fixed inset-0 z-50 bg-black/50"
+          className="lg:hidden fixed inset-0 z-50 bg-navy-950/40 backdrop-blur-sm"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 z-50 h-full w-64 bg-navy-900 transform transition-transform duration-200 ${
+        className={`fixed top-0 left-0 z-50 h-full w-64 bg-navy-900 transform transition-transform duration-300 ease-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0`}
       >
-        <div className="flex items-center justify-between h-14 px-4 border-b border-navy-800">
-          <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
+        <div className="flex items-center justify-between h-14 px-4 border-b border-white/5">
+          <Link href="/dashboard" className="flex items-center gap-2.5">
+            <div className="w-8 h-8 bg-gradient-to-br from-teal-400 to-teal-600 rounded-xl flex items-center justify-center shadow-glow">
               <Calculator className="w-4 h-4 text-white" />
             </div>
-            <span className="text-lg font-bold text-white">
+            <span className="text-base font-bold text-white">
               The Accountant
             </span>
           </Link>
           <button
             onClick={() => setSidebarOpen(false)}
-            className="lg:hidden p-1 text-navy-400"
+            className="lg:hidden p-1.5 text-navy-400 hover:text-white rounded-lg hover:bg-white/5 transition-colors"
             aria-label="Close menu"
           >
             <X className="w-5 h-5" />
@@ -91,10 +91,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 key={item.href}
                 href={item.href}
                 onClick={() => setSidebarOpen(false)}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
                   isActive
-                    ? "bg-teal-500/20 text-teal-400"
-                    : "text-navy-300 hover:bg-navy-800 hover:text-white"
+                    ? "bg-teal-500/15 text-teal-400 shadow-sm shadow-teal-500/10"
+                    : "text-navy-300 hover:bg-white/5 hover:text-white"
                 }`}
               >
                 <item.icon className="w-5 h-5" />
@@ -104,10 +104,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           })}
         </nav>
 
-        <div className="absolute bottom-0 left-0 right-0 p-3 border-t border-navy-800">
+        <div className="absolute bottom-0 left-0 right-0 p-3 border-t border-white/5">
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-navy-400 hover:bg-navy-800 hover:text-white transition-colors"
+            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm text-navy-400 hover:bg-white/5 hover:text-white transition-all duration-200"
           >
             <LogOut className="w-5 h-5" />
             Log Out
