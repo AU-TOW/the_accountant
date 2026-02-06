@@ -9,7 +9,7 @@ AI accountant for UK business owners. Teaches as it works - no jargon, plain Eng
 - **Backend**: n8n webhooks (automation.autow-services.co.uk)
 - **Database**: Supabase (separate project from AUTOW Shared)
 - **AI**: Claude via n8n AI Agent node
-- **OCR**: Google Gemini multimodal via n8n
+- **OCR**: OpenAI GPT-4o Vision via n8n HTTP Request
 - **Dev Port**: 3006
 
 ## Project Structure
