@@ -20,11 +20,14 @@ export default function SignupPage() {
     setLoading(true);
 
     const supabase = createClient();
+    const redirectTo = `${window.location.origin}/auth/callback?next=/onboarding`;
+
     const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         data: { full_name: fullName },
+        emailRedirectTo: redirectTo,
       },
     });
 
@@ -34,8 +37,7 @@ export default function SignupPage() {
       return;
     }
 
-    router.push("/onboarding");
-    router.refresh();
+    router.push(`/check-email?email=${encodeURIComponent(email)}`);
   }
 
   return (

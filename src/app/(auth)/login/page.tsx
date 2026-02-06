@@ -14,6 +14,7 @@ function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect") || "/dashboard";
+  const verificationError = searchParams.get("error") === "verification_failed";
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -56,6 +57,13 @@ function LoginForm() {
           onSubmit={handleLogin}
           className="bg-white rounded-2xl p-6 shadow-sm border border-navy-100"
         >
+          {verificationError && (
+            <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm text-amber-700">
+              Email verification failed or link expired. Please try signing up
+              again.
+            </div>
+          )}
+
           {error && (
             <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
               {error}
